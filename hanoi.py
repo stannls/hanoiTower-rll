@@ -14,12 +14,12 @@ def execute(client):
 # Recursive function for hanoi tower, requires number of discs and the numbers of the towers
 def hanoi(client, n, fromTower, toTower, midTower):
     if n == 1:
-        print("Moving ring", n, "from", fromTower, "to", toTower)
+        rospy.loginfo("Moving ring %d from Tower %d to Tower %d.", n, fromTower, toTower)
         client.move_disc(fromTower, toTower)
         return
     elif n != 1:
         hanoi(client, n-1, fromTower, midTower, toTower)
-        print("Moving ring", n, "from", fromTower, "to", toTower)
+        rospy.loginfo("Moving ring %d from Tower %d to Tower %d.", n, fromTower, toTower)
         client.move_disc(fromTower, toTower)
         hanoi(client, n-1, midTower, toTower, fromTower)
 
